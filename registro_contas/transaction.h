@@ -9,6 +9,12 @@ valor da movimentação (cadeia de 10 caracteres contendo virgula para centavos 
 
 #include <QString>
 
+enum class movTypes
+{
+    SAQUE,
+    DEPOSITO
+};
+
 class transaction
 {
 private:
@@ -18,19 +24,15 @@ private:
 
 public:
     transaction();
-    enum class movTypes
-    {
-        SAQUE,
-        DEPOSITO
-    };
+
 
     QString getAccount();
     QString getValue();
     movTypes getMovimentationType();
 
-    setMovimentationType(movTypes mov);
-    setValue(QString data);
-    setAccount(QString data);
+    void setMovimentationType(movTypes mov);
+    void setValue(QString data);
+    void setAccount(QString data);
 };
 
 #endif // TRANSACTION_H
