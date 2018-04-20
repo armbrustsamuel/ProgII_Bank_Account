@@ -89,7 +89,19 @@ void MainWindow::on_cadastrarBtn_2_pressed()
 
 void MainWindow::on_pesquisarTransacoesBtn_pressed()
 {
-
+    this->ui->transacoesPesquisadaTxt->clear();
+    QFile transactionFile(this->ui->arquivoTransacoesTxt->text());
+    if( transactionFile.exists() ) {
+        if( transactionFile.open(QIODevice::ReadWrite | QIODevice::Text) ){
+            while(!transactionFile.atEnd()){
+                QString line = transactionFile.readLine();
+                QString account = line.mid(0,5);
+                if(account == this->ui->contaPesquisadaTxt->text()){
+                    this->ui->transacoesPesquisadaTxt->append(line);
+                }
+            }
+        }
+    }
 }
 
 void MainWindow::on_contasArquivoBtn_pressed()

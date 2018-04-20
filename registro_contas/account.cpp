@@ -15,7 +15,7 @@ QString account::getClient(){
     return client;
 }
 
-double account::getBalance(){
+float account::getBalance(){
     return balance;
 }
 
@@ -27,6 +27,6 @@ void account::setClient(QString data){
     client = data;
 }
 
-void account::setBalance(double data){
+void account::setBalance(float data){
     balance = data;
 }

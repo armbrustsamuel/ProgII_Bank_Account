@@ -8,17 +8,17 @@ class account
 private:
     QString accountNumber;
     QString client;
-    double balance;
+    float balance;
 public:
     account();
 
     QString getAccountNumber();
     QString getClient();
-    double getBalance();
+    float getBalance();
 
     void setAccountNumber(QString account);
     void setClient(QString data);
-    void setBalance(double data);
+    void setBalance(float data);
 
     void print();
 };

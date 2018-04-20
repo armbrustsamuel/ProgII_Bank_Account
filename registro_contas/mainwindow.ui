@@ -18,78 +18,13 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>10</y>
+      <y>20</y>
       <width>60</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
      <string>Conta</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="numeroLbl">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>30</y>
-      <width>60</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Número:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="clientLbl">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>30</y>
-      <width>60</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Cliente:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="saldoInicialLbl">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>30</y>
-      <width>81</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Saldo Inicial:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="arquivoContaLbl">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>120</y>
-      <width>121</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Arquivo de Contas:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="arquivoTransacoesLbl">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>120</y>
-      <width>151</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Arquivo de Transações:</string>
     </property>
    </widget>
    <widget class="QLabel" name="contaPesquisadaLbl">
@@ -118,129 +53,17 @@
      <string>Transações da Conta Pesquisada:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="contasArquivoBtn">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>170</y>
-      <width>113</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Abrir Arquivo</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="transacoesArquivoBtn">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>170</y>
-      <width>113</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Abrir Arquivo</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="atualizarSaldoBtn">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>170</y>
-      <width>113</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Atualizar Saldo</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pesquisarTransacoesBtn">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>240</y>
-      <width>171</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Pesquisar Transações</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="cadastrarBtn">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>80</y>
+      <x>30</x>
+      <y>90</y>
       <width>113</width>
       <height>32</height>
      </rect>
     </property>
     <property name="text">
      <string>Cadastrar</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="numeroTxt">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>50</y>
-      <width>81</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="clienteTxt">
-    <property name="geometry">
-     <rect>
-      <x>122</x>
-      <y>50</y>
-      <width>191</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="saldoInicialTxt">
-    <property name="geometry">
-     <rect>
-      <x>332</x>
-      <y>50</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="arquivoContaTxt">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>140</y>
-      <width>151</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="arquivoTransacoesTxt">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>140</y>
-      <width>151</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="contaPesquisadaTxt">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>240</y>
-      <width>231</width>
-      <height>21</height>
-     </rect>
     </property>
    </widget>
    <widget class="QTextEdit" name="transacoesPesquisadaTxt">
@@ -259,8 +82,8 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>80</y>
+      <x>170</x>
+      <y>90</y>
       <width>113</width>
       <height>32</height>
      </rect>
@@ -268,6 +91,155 @@
     <property name="text">
      <string>Ler</string>
     </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>240</y>
+      <width>411</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="contaPesquisadaTxt"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pesquisarTransacoesBtn">
+       <property name="text">
+        <string>Pesquisar Transações</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>180</y>
+      <width>411</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="contasArquivoBtn">
+       <property name="text">
+        <string>Abrir Arquivo</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="atualizarSaldoBtn">
+       <property name="text">
+        <string>Atualizar Saldo</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="transacoesArquivoBtn">
+       <property name="text">
+        <string>Abrir Arquivo</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>411</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QLabel" name="numeroLbl">
+         <property name="text">
+          <string>Número:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="clienteTxt"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QLabel" name="clientLbl">
+         <property name="text">
+          <string>Cliente:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="numeroTxt"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QLabel" name="saldoInicialLbl">
+         <property name="text">
+          <string>Saldo Inicial:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="saldoInicialTxt"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>130</y>
+      <width>411</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="arquivoContaLbl">
+         <property name="text">
+          <string>Arquivo de Contas:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="arquivoContaTxt"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="arquivoTransacoesLbl">
+         <property name="text">
+          <string>Arquivo de Transações:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="arquivoTransacoesTxt"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
