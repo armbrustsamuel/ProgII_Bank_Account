@@ -6,18 +6,19 @@
 class account
 {
 private:
-    QString accountNumber;
-    QString client;
+    char accountNumber[6];
+    char client[41];
     float balance;
 public:
     account();
+    account(QString acc, QString client, float balance);
 
     QString getAccountNumber();
     QString getClient();
     float getBalance();
 
     void setAccountNumber(QString account);
-    void setClient(QString data);
+    void setClient(QString data); //const QString &data
     void setBalance(float data);
 
     void print();

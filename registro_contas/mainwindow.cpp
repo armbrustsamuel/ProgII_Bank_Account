@@ -7,14 +7,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-//    f = new QFile("/Users/samuel/Documents/Unisinos/Programacao_Orientada_Objeto_II/TGA/contas.bin");
-
     ui->setupUi(this);
+    test=0;
 }
 
 MainWindow::~MainWindow()
 {
-//    f->close();
     delete ui;
 }
 
@@ -24,67 +22,55 @@ void MainWindow::on_cadastrarBtn_pressed()
    QString client = this->ui->clienteTxt->text();
    QString balance = this->ui->saldoInicialTxt->text();
 
-//   if( !f.exists() ) {
-//       ui->contentText->setText("Arquivo não Existe.");
-//       return;
-//   }
-
+   QFile g();
    f = new QFile(this->ui->arquivoContaTxt->text());
-
-   f->open(QIODevice::WriteOnly);
-
-   QDataStream ds (f);
-
-   ds.device()->seek(0);
 
    account * oAccount = new account();
    oAccount->setAccountNumber(acc);
    oAccount->setBalance(balance.toInt());
    oAccount->setClient(client);
 
-   ds.device()->seek(0);
+   if(f->open(QIODevice::WriteOnly | QIODevice::Append)){
+       QDataStream ds (f);
+       char BufferBytes[sizeof(account)];
+       memcpy(BufferBytes, oAccount, sizeof(account));
+       f->write(BufferBytes, sizeof(account));
+       index++;
 
-   char BufferBytes[sizeof(account)]; //Cria um buffer temporário de bytes no tamanho do objeto
-
-   memcpy(BufferBytes, oAccount, sizeof(account)); //Copia os bytes do objeto para o buffer de bytes
-
-   ds.writeRawData(BufferBytes, sizeof(account)); // grava o buffer contendo os bytes do objeto no arquivo através do stream. (também pode ser feito com o método write do Qfile)
+       f->flush();
+       f->close();
+   }
 
    this->ui->numeroTxt->clear();
    this->ui->clienteTxt->clear();
    this->ui->saldoInicialTxt->clear();
-
-   f->close();
 }
 
 void MainWindow::on_cadastrarBtn_2_pressed()
 {
-
-//    if( !f.exists() ) {
-//        ui->contentText->setText("Arquivo não Existe.");
-//        return;
-//    }
-    f = new QFile(this->ui->arquivoContaTxt->text());
-
-    f->open(QIODevice::ReadOnly);
-
-    QDataStream ds (f);
-
-    ds.device()->seek(0);
-
+    QFile g(this->ui->arquivoContaTxt->text());
+    char BufferBytes[sizeof(account)];
     account * oAccount = new account();
+    test=0;
 
-    char BufferBytes[sizeof(account)]; //Cria um buffer temporário de bytes no tamanho do objeto
-
-    ds.readRawData(BufferBytes, sizeof(account));
-
-    memcpy(oAccount, BufferBytes, sizeof(account)); //Copia os bytes do objeto para o buffer de bytes
+    this->ui->transacoesPesquisadaTxt->clear();
+    if(g.open(QIODevice::ReadWrite)){
+        while(!g.atEnd()){
+            g.seek(test*(sizeof(account)));
+            g.read(BufferBytes, sizeof(account));
+            memcpy(oAccount, BufferBytes, sizeof(account));
+            this->ui->transacoesPesquisadaTxt->append(oAccount->getAccountNumber()+
+                  " :: "+oAccount->getClient()+ " :: "+QString::number(oAccount->getBalance()));
+            test++;
+        }
+        g.flush();
+        g.close();
+    }
+    test = 0;
 
     this->ui->numeroTxt->setText(oAccount->getAccountNumber());
     this->ui->clienteTxt->setText(oAccount->getClient());
     this->ui->saldoInicialTxt->setText(QString::number(oAccount->getBalance()));
-
-    f->close();
 }
 
 void MainWindow::on_pesquisarTransacoesBtn_pressed()
@@ -96,22 +82,41 @@ void MainWindow::on_pesquisarTransacoesBtn_pressed()
             while(!transactionFile.atEnd()){
                 QString line = transactionFile.readLine();
                 QString account = line.mid(0,5);
+                QString operation = line.mid(5,1);
+                float value = line.mid(6).toFloat();
                 if(account == this->ui->contaPesquisadaTxt->text()){
-                    this->ui->transacoesPesquisadaTxt->append(line);
+                    if(operation == "S"){
+                        this->ui->transacoesPesquisadaTxt->append(
+                                   "Conta: "+account+" "+
+                                   "Operação: Crédito"+" "+
+                                   "Valor: "+QString::number(value));
+                    } else {
+                        if(operation == "D"){
+                             this->ui->transacoesPesquisadaTxt->append(
+                                        "Conta: "+account+" "+
+                                        "Operação: Débito"+" "+
+                                        "Valor: "+QString::number(value));
+                        }
+                    }
                 }
             }
         }
     }
+    transactionFile.close();
 }
+
+///Users/samuel/Documents/Unisinos/Programacao_Orientada_Objeto_II/3-FileStream/TGA/movimentacao.txt
 
 void MainWindow::on_contasArquivoBtn_pressed()
 {
     QString filename = QFileDialog::getOpenFileName(
                 this,
                 tr("Open File"),
-                "/Users/samuel/Documents/Unisinos/Programacao_Orientada_Objeto_II/TGA/",
+                "/Users/samuel/Documents/Unisinos/Programacao_Orientada_Objeto_II/3-FileStream/TGA",
                 "All files (*.*);;Binary File (*.bin)"
                 );
+
+    // Coloquei o caminho para minha pasta do projeto. Pode ser alterado para C:
 
     this->ui->arquivoContaTxt->setText(filename);
 }
@@ -121,9 +126,62 @@ void MainWindow::on_transacoesArquivoBtn_pressed()
     QString filename = QFileDialog::getOpenFileName(
                 this,
                 tr("Open File"),
-                "/Users/samuel/Documents/Unisinos/Programacao_Orientada_Objeto_II/TGA/",
+                "/Users/samuel/Documents/Unisinos/Programacao_Orientada_Objeto_II/3-FileStream/TGA",
                 "All files (*.*);;Text File (*.txt)"
                 );
 
+    // Coloquei o caminho para minha pasta do projeto. Pode ser alterado para C:
+
     this->ui->arquivoTransacoesTxt->setText(filename);
+}
+
+void MainWindow::on_atualizarSaldoBtn_pressed()
+{
+    QFile transactionFile(this->ui->arquivoTransacoesTxt->text());
+    QFile g(this->ui->arquivoContaTxt->text());
+    QString line;
+    QString accountNumber;
+    QString operation;
+
+    account * oAccount = new account();
+    int accountFound=0;
+    test=0;
+
+    if( transactionFile.exists() ) {
+        if( transactionFile.open(QIODevice::ReadWrite | QIODevice::Text) ){
+            while(!transactionFile.atEnd()){
+                line = transactionFile.readLine();
+                accountNumber = line.mid(0,5);
+                operation = line.mid(5,1);
+                float value = line.mid(6).toFloat();
+                accountFound = 0;
+
+                while(accountFound == 0){
+                    if(g.open(QIODevice::ReadWrite)){
+                        char BufferBytes[sizeof(account)];
+                        g.seek(test*(sizeof(account)));
+                        g.read(BufferBytes, sizeof(account));
+                        memcpy(oAccount, BufferBytes, sizeof(account));
+                        if(accountNumber == oAccount->getAccountNumber()){
+                            if(operation == "S"){
+                                oAccount->setBalance(oAccount->getBalance() + value);
+                            }
+                            if(operation == "D"){
+                                oAccount->setBalance(oAccount->getBalance() - value);
+                            }
+                            memcpy(BufferBytes, oAccount, sizeof(account));
+                            g.seek(test*(sizeof(account)));
+                            g.write(BufferBytes, sizeof(account));
+                            accountFound = 1;
+                        }
+                        test++;
+                        g.flush();
+                        g.close();
+                    }
+                }
+                test = 0;
+            }
+            transactionFile.close();
+        }
+    }
 }

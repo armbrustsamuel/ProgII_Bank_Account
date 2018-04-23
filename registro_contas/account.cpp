@@ -1,4 +1,5 @@
 #include "account.h"
+#include <QByteArray>
 
 account::account()
 {
@@ -7,12 +8,18 @@ account::account()
     setBalance(0);
 }
 
+account::account(QString acc, QString client, float balance){
+    setAccountNumber(acc);
+    setClient(client);
+    setBalance(balance);
+}
+
 QString account::getAccountNumber(){
-    return accountNumber;
+    return QString (accountNumber);
 }
 
 QString account::getClient(){
-    return client;
+    return QString (client);
 }
 
 float account::getBalance(){
@@ -20,11 +27,13 @@ float account::getBalance(){
 }
 
 void account::setAccountNumber(QString data){
-    accountNumber = data;
+    memcpy( accountNumber, data.toStdString().c_str() ,data.size());
+    accountNumber[data.size()] = 0;
 }
 
 void account::setClient(QString data){
-    client = data;
+    memcpy( client, data.toStdString().c_str() ,data.size());
+    client[data.size()] = 0;
 }
 
 void account::setBalance(float data){

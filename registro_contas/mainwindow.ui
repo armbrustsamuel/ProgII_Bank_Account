@@ -89,7 +89,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Ler</string>
+     <string>Ler Contas</string>
     </property>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget">
@@ -153,7 +153,7 @@
       <x>20</x>
       <y>40</y>
       <width>411</width>
-      <height>41</height>
+      <height>49</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -167,7 +167,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="clienteTxt"/>
+        <widget class="QLineEdit" name="numeroTxt">
+         <property name="maxLength">
+          <number>5</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -181,7 +185,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="numeroTxt"/>
+        <widget class="QLineEdit" name="clienteTxt">
+         <property name="maxLength">
+          <number>40</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -207,7 +215,7 @@
       <x>20</x>
       <y>130</y>
       <width>411</width>
-      <height>41</height>
+      <height>49</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
